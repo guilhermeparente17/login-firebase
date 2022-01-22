@@ -23,12 +23,12 @@ const Homepage = ({ currentUser }) => {
                     ReactJs + Styled-Components + Firebase + responsividade
                 </HomepageSubTitle>
 
-                <HomePageItem href="/" target="_blank">
+                <HomePageItem href="https://github.com/guilhermeparente17/login-firebase" target="_blank">
                     <GitHub size="28" style={{ marginRight: '11px' }} />
                     Link do repositorio
                 </HomePageItem>
 
-                <HomePageItem href="/" target="_blank">
+                <HomePageItem href="https://www.linkedin.com/in/guilherme-parente-758015150/" target="_blank">
                     <Linkedin size="28" style={{ marginRight: '11px' }} />
                     Link do Linkedin
                 </HomePageItem>
