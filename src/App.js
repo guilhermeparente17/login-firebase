@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import GlobalStyle from './globalStyles';
+import Homepage from './pages/homepage/homepage.component';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { auth, createUserProfileDocument } from './firebase/firebase.utils'
+
+class App extends React.Component {
+
+  constructor(){
+    super()
+
+    this.state = {
+      currentUser: null
+    }
+  }
+
+  unsubscribeFromAuth = null
+
+  componentDidMount(){
+    this.unsubscribeFromAuth =  auth.onAuthStateChanged(async user => {
+      createUserProfileDocument(user)
+      this.setState({currentUser: user})
+    })
+  }
+
+  componentWillUnmount(){
+    this.unsubscribeFromAuth()
+  }
+
+  render(){
+    return (
+      <>
+        <GlobalStyle />
+        <Homepage currentUser={this.state.currentUser} />
+      </>
+    );
+  }
 }
 
 export default App;
